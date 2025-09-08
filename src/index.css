@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+
+  @utility img-shadow-1{
+    filter: drop-shadow(40px 50px 25px #0f1115)
+  }
+
+  @utility img-shadow-2{
+    filter: drop-shadow(10px 7px 15px #272c35)
+  }
+
+  
