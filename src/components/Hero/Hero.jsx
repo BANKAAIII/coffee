@@ -18,9 +18,9 @@ const bgImage={
 const Hero = () => {
   const [sideBar,setSideBar] = useState(false);
   return (
-    <main style={bgImage} className="relative">  {/* container for main content of the page , used by seo and all */}
+    <main style={bgImage} className="relative  w-full overflow-hidden ">  {/* container for main content of the page , used by seo and all */}
         <section className="min-h-[720px] w-full">   {/* used to define sections of a page  */}
-            <div className="container"></div>
+            
              {/* Navbar section */}
             <NavBar sideBar={sideBar} setSideBar={setSideBar}/>
 
@@ -28,7 +28,7 @@ const Hero = () => {
              <div className='grid grid-cols-1 md:grid-cols-3  place-items-center min-h-[850px]' >
 
               {/* text section 1 */}
-              <div className="relative text-[#f1dabf] mt-[300px] md:mt-[200px] space-y-20 p-4">
+              <div className="relative text-[#f1dabf]  mt-[60px] md:mt-[200px] space-y-20 p-4 ">
                 <motion.h1
                 
                 initial={{opacity: 0,y: -100}}
@@ -39,7 +39,7 @@ const Hero = () => {
                   damping:9,
                   stiffness:100
                 }}
-                className="text-7xl font-bold leading-tight ml-10 ">Blvck <br></br>Tumbler</motion.h1>
+                className=" text-6xl md:text-7xl font-bold leading-tight ml-10 ">Blvck <br></br>Tumbler</motion.h1>
                 
                 
                 <motion.div
@@ -53,17 +53,18 @@ const Hero = () => {
                   stiffness:100
                 }}
 
-                className="relative z-10 space-y-4">
+                className="relative z-10 space-y-5">
                   <h1 className=" text-2xl " >Black Lifestyle Lovers</h1>
                   <h1 className="text-sm opacity-55 leading-loose">Lorem ipsum dolor sit,amet consectetur adipisicing elit.<br></br>
                       Delectus aspernatur,cumque eos neque dolorem architecto,<br></br>
                        deserunt quis voluptatibus in quisquam quia ducimus</h1>
-                 <div className="absolute -top-5 -left-2 w-[250px] h-[180px] bg-gray-700/25 "></div>
+                 <div className="absolute -top-8 -left-13 md:-top-5 md:-left-2 w-[250px] h-[180px] bg-gray-700/25 "></div>
                 </motion.div>
               </div>
               {/* hero Image */}
               <div className="relative z-40" >
-                <div className="absolute top-10 left-[180px]">
+                {/* background title */}
+                <div className="absolute top-7 md:top-10 left-[180px] ">
                   <motion.h1 
                   
                   initial={{opacity:0,x:-100}}
@@ -73,7 +74,7 @@ const Hero = () => {
                   delay:0.9,
                   stiffness:100,
                   damping:8 }} 
-                  className="text-[140px]  text-[#1a1f25]/50 scale-150 font-bold leading-none">Blvck<br></br>Tumbler</motion.h1>
+                  className="text-[140px] md:right-[50%] md:top-[50%] text-[#1a1f25]/50 scale-150 font-bold leading-none">Blvck<br></br>Tumbler</motion.h1>
                 </div>
                  {/* Orange ring */}
                 <motion.div
@@ -84,7 +85,7 @@ const Hero = () => {
                   delay:1.5,
                   stiffness:100,
                   damping:12 }} 
-                className=" absolute top-20 -right-10 z-10 w-[220px] h-[220px] rounded-full border-25 border-orange-500" ></motion.div>
+                className=" absolute top-35 right-30 md:top-20 md:-right-10 z-10 h-[350px] w-[350px] md:w-[220px] md:h-[220px] rounded-full border-25 border-orange-500" ></motion.div>
                 <motion.img
                 
                 initial={{opacity:0,scale:0}}
@@ -97,17 +98,17 @@ const Hero = () => {
                 }}  
 
                 src={Coffee}
-                     className="relative z-20 w-[320px] mb-20 h-[700px] img-shadow1"
+                     className="relative z-20 right-60 top-30  md:right-5 md:top-5 -mb-80 md:mb-20 h-[500px] w-[260px] md:h-[700px] md:w-[320px] img-shadow1"
                      ></motion.img>
 
              
               </div>
               
               {/* text section 2 */}
-              <div className="text-[#f1dabf] mt-[300px] md:mt-[200px] space-x-100 space-y-15 pt-50 p-4">
+              <div className="text-[#f1dabf] mt-[300px] md:mt-[200px] space-y-10 mb-10 -space-x-00  md:space-x-100 md:space-y-15 pt-50 p-4">
                 <motion.h1 
                 initial={{opacity:0}}
-                animate={{opacity:100}}
+                whileInView={{opacity:100}}
                 transition={{ 
                   type:"spring",
                   delay:0.9,
@@ -119,7 +120,7 @@ const Hero = () => {
 
                   <motion.h1 
                   initial={{opacity:0,x:100}}
-                animate={{opacity:100,x:0}}
+                whileInView={{opacity:100,x:0}}
                 transition={{ 
                   type:"spring",
                   delay:0.9,
@@ -130,7 +131,7 @@ const Hero = () => {
                   <motion.h1 
                   
                   initial={{opacity:0,x:100}}
-                animate={{opacity:100,x:0}}
+                whileInView={{opacity:100,x:0}}
                 transition={{ 
                   type:"spring",
                   delay:0.9,
@@ -158,9 +159,9 @@ const Hero = () => {
                   delay:0.9,
                   stiffness:100,
                   damping:8 }}
-                 className=" absolute top-0 right-0 z-10 w-60 h-full bg-gradient-to-b from-amber-400/50 to-orange-500/80 ">
+                 className="hidden md:block absolute top-0 right-0 z-10 md:w-60 md:h-full bg-gradient-to-b from-amber-400/50 to-orange-500/80 ">
 
-                  <div className="w-full h-full flex flex-col justify-center items-center gap-6">
+                  <div className="w-full h-full flex flex-col justify-center items-center gap-6 ">
                     
                     <motion.div
                     initial={{opacity:0,y:100}}

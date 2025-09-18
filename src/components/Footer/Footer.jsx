@@ -7,11 +7,11 @@ import creditCard from "../../assets/credit.png"
 const Footer = () => {
   return (
     <div className='relative w-full h-100 bg-amber-400 flex felx-col justify-center gap-50 '>
-      <div >
+      <div className='hidden md:block' >
         {/* Partition 1 */}
 
         {/* Title 1 */}
-       <div className="text-4xl text-amber-50 uppercase font-sans font-bold pt-8">
+       <div className=" text-4xl text-amber-50 uppercase font-sans font-bold pt-8">
         coder Cafe
        </div>
        {/* Content 1 */}
@@ -30,7 +30,7 @@ const Footer = () => {
       {/* Partition 2 */}
 
       {/* Title 2 */}
-      <div>
+      <div className="hidden md:block">
         <div className="text-4xl text-amber-50 uppercase font-sans font-bold pt-8" >
         quick links
       </div>
@@ -69,4 +69,4 @@ const Footer = () => {
   )
 }
 
-export default Footer
+export default Footer;

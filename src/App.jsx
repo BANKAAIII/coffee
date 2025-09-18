@@ -4,11 +4,13 @@ import Services from './components/Services/Services'
 import ShopSearch from './components/ShopSearch/ShopSearch'
 import AppBanner from './components/AppBanner/AppBanner'
 import Footer from "./components/Footer/Footer"
+import Checkout from './Checkout'
+import Menu from './Menu/menu'
 
 const App = () => {
   return (
     <>
-  <Hero/>
+    <Hero/>
   <Services/>
   <ShopSearch/>
   <AppBanner/>
@@ -18,3 +20,10 @@ const App = () => {
 }
 
 export default App
+
+{/* <Hero/>
+  <Services/>
+  <ShopSearch/>
+  <AppBanner/>
+  <Footer/>
+   */}
