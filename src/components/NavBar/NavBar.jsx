@@ -5,7 +5,7 @@ import{AnimatePresence, motion} from "framer-motion"
 const NavBar = ({sideBar,setSideBar}) => {
   return (
     <nav className=" flex flex-col items-center pt-8">
-        <div className=" top-0 left-0 h-20 rounded-2xl w-400 p-4 bg-amber-300/10 pt-6 text-amber-50 z-10 ">
+        <div className=" top-0 left-0 h-20 rounded-2xl w-[70%] md:w-400 p-4 bg-amber-300/10 pt-6 text-amber-50 z-10 ">
             <div className="container" >
                
                <motion.div

@@ -1,0 +1,162 @@
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+enum Role {
+  CUSTOMER
+  OWNER
+  STAFF
+}
+
+model User {
+  id           String    @id @default(cuid())
+  name         String?
+  email        String    @unique
+  password     String
+  phoneNumber  Int       @unique
+  role         Role      @default(CUSTOMER)
+  createdAt    DateTime  @default(now())
+  
+  //Orders placed
+  orders       Orders[] 
+
+  //reviews written
+  reviews      Review[]
+}
+
+
+// Menu Related schema
+model Category {
+  id            String    @id @default(cuid()) 
+  name          String    @unique
+  description   String?
+  //items in category
+  menuItems     MenuItems[]
+}
+
+model MenuItems{
+  id          String    @id @default(cuid())
+  name        String 
+  description String
+  isAvailable Boolean   @default(false)
+  price       Float
+  imgaeUrl    String
+  
+  //Discount price
+  discountPercent Float?
+
+  //isSpecial (creatings specials for occasions)
+  isSpecial   Boolean   @default(false)
+  specialValidity DateTime? 
+
+  //EasyMenuChange
+  isActive    Boolean   @default(true)
+
+  // Relation to the parent Category
+  categoryId   String
+  category    Category  @relation(fields: [categoryId], references: [id], onDelete:Restrict) //Also add OnUpdate
+
+  //OrderItems
+  orderItems  OrderItems[]
+
+  //Reviews
+  reviews     Review[]
+}
+
+enum OrderStatus{
+  PENDING 
+  PERPARING
+  COMPLETED 
+  READY
+  STARTED
+  CANCELLED
+  FAILED
+}
+
+enum PaymentMethod{
+  CASH
+  CARD
+  UPI
+  WALLET
+}
+
+model OrderItems{
+  id          String     @id @default(cuid())
+  quantity    Int
+  price       Float
+
+  //Relation to menu Item
+  menuItemId  String
+  menuItem    MenuItems  @relation(fields: [menuItemId], references: [id], onDelete:Restrict)
+
+  //Relation to Orders
+  orderId     String
+  orders      Orders   @relation(fields: [orderId], references: [id],onDelete: Cascade) //add On Update field
+}
+
+//Orders 
+model Orders{
+  id          String        @id @default(cuid())
+  status      OrderStatus   @default(PENDING)
+  amount      Float
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  //Placed By
+  userId      String
+  user        User          @relation(fields:[userId], references: [id], onDelete: Cascade)  
+
+  //Order Items
+  orderItems  OrderItems[]
+
+  //Mode of Payment
+  paymentMethod PaymentMethod
+
+  //PaymentStatus
+  payment     Payment[]
+  
+}
+
+enum PaymentStatus{
+  PENDING
+  COMPLETED
+  FAILED
+  REFUNDED
+}
+
+model Payment{
+  id            String        @id @default(cuid())
+  amount        Float
+  method        PaymentMethod
+  status        PaymentStatus @default(PENDING)
+  timeStamp     DateTime      @default(now())
+  
+  // relation to order 
+  orderId       String
+  order         Orders       @relation(fields: [orderId], references: [id], onDelete:Restrict )
+
+  transactionId String?      @unique
+}
+
+model Review{
+  id          String    @id @default(cuid())
+  rating      Int
+  comment     String?
+  createdAt   DateTime  @default(now())
+
+  //Relation to User
+  userId      String
+  user        User      @relation(fields: [userId], references: [id], onDelete:Restrict)
+
+  //Relation to MenuItem
+  menuItemId  String
+  menuItem    MenuItems @relation(fields: [menuItemId], references: [id],onDelete:Restrict)
+}
